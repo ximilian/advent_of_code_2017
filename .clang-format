@@ -27,7 +27,6 @@
         "BeforeElse"                                : true,
         "BeforeCatch"                               : true,
     },
-    "BreakStringLiterals"                           : true,
     "BreakBeforeTernaryOperators"                   : true,
     "BreakConstructorInitializersBeforeComma"       : false,
     "ColumnLimit"                                   : 120,

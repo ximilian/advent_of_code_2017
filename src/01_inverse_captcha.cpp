@@ -1,6 +1,6 @@
-#include "01_circular_sum.h"
+#include "01_inverse_captcha.hpp"
 
-int CircularSum::compute(const std::string& input) {
+int InverseCaptcha::compute(const std::string& input) {
   int sum = 0;
   if (!input.empty()) {
     char prev = input.back();
@@ -14,7 +14,7 @@ int CircularSum::compute(const std::string& input) {
   return sum;
 }
 
-int CircularSum::compute_halfway(const std::string& input) {
+int InverseCaptcha::compute_halfway(const std::string& input) {
   int sum       = 0;
   size_t length = input.size();
   if (length > 0) {

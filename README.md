@@ -5,8 +5,8 @@ This repository represents my personal solutions for the '[Advent Of Code 2017](
 The solutions are numbered by day, with a title describing the challenge itself. I use CMake to compile and tests everything (the building system has been taken from [here](https://github.com/snikulov/google-test-examples)).
 
 # Solved challenges
-1. Circular Sum
-1.  
+1. [Inverse Captcha](http://adventofcode.com/2017/day/1)
+1. [Corruption Checksum](http://adventofcode.com/2017/day/2)
 1. 
 1.  
 1. 
