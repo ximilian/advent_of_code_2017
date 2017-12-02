@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Building
+build
+
+# Testing
+Testing
