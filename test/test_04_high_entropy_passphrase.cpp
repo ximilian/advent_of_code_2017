@@ -1,28 +1,26 @@
 #include "04_high_entropy_passphrase.hpp"
 #include "gtest/gtest.h"
 
-TEST(HighEntropyPassphraseTest, solve_whenInputIsValid_shouldBeTrue) {
+TEST(HighEntropyPassphraseTest, isValid_whenInputIsValid_shouldBeTrue) {
   HighEntrpyPassphrase solver;
   EXPECT_TRUE(solver.isValid("aa bb cc dd ee"));
 }
 
-TEST(HighEntropyPassphraseTest, solve_whenInputIsInvalid_shouldBeFalse) {
+TEST(HighEntropyPassphraseTest, isValid_whenInputIsInvalid_shouldBeFalse) {
   HighEntrpyPassphrase solver;
   EXPECT_FALSE(solver.isValid("aa bb cc dd aa"));
 }
 
-TEST(HighEntropyPassphraseTest, solve_whenInputIsValid2_shouldBeTrue) {
+TEST(HighEntropyPassphraseTest, isValid_whenInputIsValid2_shouldBeTrue) {
   HighEntrpyPassphrase solver;
   EXPECT_TRUE(solver.isValid("aa bb cc dd aaa"));
 }
 
-TEST(HighEntropyPassphraseTest, solve_whenInputIsEmpty_shouldBeFalse) {
+TEST(HighEntropyPassphraseTest, isValid_whenInputIsEmpty_shouldBeFalse) {
   HighEntrpyPassphrase solver;
   EXPECT_FALSE(solver.isValid(""));
 }
 
-
-TEST(HighEntropyPassphraseTest, _solvePuzzleInputPartOne) {
   std::string input(R"(
 sayndz zfxlkl attjtww cti sokkmty brx fhh suelqbp
 xmuf znkhaes pggrlp zia znkhaes znkhaes
@@ -537,9 +535,38 @@ ydjhhf yeltadb lwi cjdcb ovaox xrdm vkxub
 zax xza admbc lvpzfeh auxn rwasj
 kebx eild nrskdr meja jxczomh gcne
 )");
+
+TEST(HighEntropyPassphraseTest, countValidPassphrase_solvePuzzleInputPartOne) {
   HighEntrpyPassphrase solver;
-  EXPECT_EQ(383, solver.solve(input));
+  EXPECT_EQ(383, solver.countValidPassphrase(input));
 }
 
-TEST(HighEntropyPassphraseTest, _solvePuzzleInputPartTwo) {
+TEST(HighEntropyPassphraseTest, isValidWithNoAnagram_whenInputIsValid_shouldBeTrue) {
+  HighEntrpyPassphrase solver;
+  EXPECT_TRUE(solver.isValidWithNoAnagram("abcde fghij"));
+}
+
+TEST(HighEntropyPassphraseTest, isValidWithNoAnagram_whenInputIsAnagram_shouldBeFalse) {
+  HighEntrpyPassphrase solver;
+  EXPECT_FALSE(solver.isValidWithNoAnagram("abcde xyz ecdab"));
+}
+
+TEST(HighEntropyPassphraseTest, isValidWithNoAnagram_whenInputIsValid2_shouldBeTrue) {
+  HighEntrpyPassphrase solver;
+  EXPECT_TRUE(solver.isValidWithNoAnagram("a ab abc abd abf abj"));
+}
+
+TEST(HighEntropyPassphraseTest, isValidWithNoAnagram_whenInputIsValid3_shouldBeTrue) {
+  HighEntrpyPassphrase solver;
+  EXPECT_TRUE(solver.isValidWithNoAnagram("iiii oiii ooii oooi oooo"));
+}
+
+TEST(HighEntropyPassphraseTest, isValidWithNoAnagram_whenInputIsInvalid_shouldBeTrue) {
+  HighEntrpyPassphrase solver;
+  EXPECT_FALSE(solver.isValidWithNoAnagram("oiii ioii iioi iiio"));
+}
+
+TEST(HighEntropyPassphraseTest, countValidPassphraseNoAnagram_solvePuzzleInputPartTwo) {
+  HighEntrpyPassphrase solver;
+  EXPECT_EQ(265, solver.countValidPassphraseNoAnagram(input));
 }

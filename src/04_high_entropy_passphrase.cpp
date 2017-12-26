@@ -2,13 +2,36 @@
 
 #include <sstream>
 #include <map>
-#include <iostream>
+#include <vector>
+#include <algorithm>
+
+bool isAnagram(const std::string& word, const std::vector<std::string>& dict) {
+    for (auto wdict : dict) {
+        if (wdict == word) {
+          return true;
+        }
+    }
+    return false;
+}
+
+bool HighEntrpyPassphrase::isValidWithNoAnagram(const std::string& input) {
+  std::istringstream iss(input);
+  std::string word;
+  std::vector<std::string> dict;
+  while (iss >> word) {
+      std::sort(word.begin(), word.end());
+      if (isAnagram(word, dict)) {
+        return false;
+      }
+      dict.push_back(word);
+  }
+  return isValid(input);
+}
 
 bool HighEntrpyPassphrase::isValid(const std::string& input) {
   std::istringstream iss(input);
   std::string word;
   std::map<std::string, int> dict;
-  std::cout << "[" << input << "]\n";
   bool has_a_word = false;
   while (iss >> word) {
     dict[word]++;
@@ -22,7 +45,7 @@ bool HighEntrpyPassphrase::isValid(const std::string& input) {
   return has_a_word;
 }
 
-int HighEntrpyPassphrase::solve(const std::string& input) {
+int HighEntrpyPassphrase::countValidPassphrase(const std::string& input) {
   std::istringstream iss(input);
   int count = 0;
   std::string line;
@@ -34,3 +57,18 @@ int HighEntrpyPassphrase::solve(const std::string& input) {
 
   return count;
 }
+
+
+int HighEntrpyPassphrase::countValidPassphraseNoAnagram(const std::string& input) {
+  std::istringstream iss(input);
+  int count = 0;
+  std::string line;
+  while (getline(iss, line)) {
+    if (isValidWithNoAnagram(line)) {
+      count++;
+    }
+  }
+
+  return count;
+}
+

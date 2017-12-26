@@ -2,7 +2,10 @@
 
 class HighEntrpyPassphrase {
  public:
-  int solve(const std::string& input);
+  int countValidPassphrase(const std::string& input);
+
+  int countValidPassphraseNoAnagram(const std::string& input);
 
   bool isValid(const std::string& input);
+  bool isValidWithNoAnagram(const std::string& input);
 };
