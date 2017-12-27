@@ -1,10 +1,14 @@
 #include "14_.hpp"
 #include "gtest/gtest.h"
 
-TEST(Test14, _solvePuzzleInputPartOne) {
+class T14Test: public ::testing::Test {
+    public:
+};
 
+TEST_F(T14Test, _solvePuzzleInputPartOne) {
 }
 
-TEST(Test14, _solvePuzzleInputPartTwo) {
+TEST_F(T14Test, _solvePuzzleInputPartTwo) {
     
 }
+
