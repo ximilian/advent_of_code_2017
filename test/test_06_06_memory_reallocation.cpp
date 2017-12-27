@@ -15,5 +15,10 @@ TEST_F(MemoryReallocationTest, detectInfiniteLoop_solvePuzzleInputPartOne) {
     EXPECT_EQ(11137, solver.detectInfiniteLoop(input));
 }
 
-TEST_F(MemoryReallocationTest, _solvePuzzleInputPartTwo) {
+TEST_F(MemoryReallocationTest, computeLoopSize_whenTest_shouldComputeLoopSize) {
+  EXPECT_EQ(4, solver.computeLoopSize("0 2 7 0"));
+}
+
+TEST_F(MemoryReallocationTest, computeLoopSize_solvePuzzleInputPartTwo) {
+    EXPECT_EQ(1037, solver.computeLoopSize(input));
 }

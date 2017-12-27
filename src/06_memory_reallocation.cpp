@@ -14,18 +14,18 @@ int nextIndex(const std::vector<int>& banks, int index) {
   return (index + 1) % banks.size();
 }
 
-void MemoryReallocation::storeConfiguration(const std::string& configuration) {
-  dict.insert(configuration);
+void MemoryReallocation::storeConfiguration(const std::string& configuration, int index) {
+  dict[configuration] = index;
 }
 
-std::string MemoryReallocation::redistribute(std::vector<int>& banks) {
-  storeConfiguration(getStringRepresentation(banks));
+std::string MemoryReallocation::redistribute(int index) {
+  storeConfiguration(getStringRepresentation(banks), index);
 
   auto max_banks            = std::max_element(banks.begin(), banks.end());
   int value_to_redistribute = *max_banks;
 
-  int cursor                = max_banks - banks.begin();
-  banks[cursor]             = 0;
+  int cursor    = max_banks - banks.begin();
+  banks[cursor] = 0;
 
   while (value_to_redistribute > 0) {
     int i = nextIndex(banks, cursor);
@@ -40,23 +40,27 @@ bool MemoryReallocation::hasAlreadySeen(const std::string& configuration) {
   return dict.find(configuration) != dict.end();
 }
 
-std::vector<int> MemoryReallocation::load(const std::string& input) {
-  std::vector<int> banks;
+void MemoryReallocation::load(const std::string& input) {
   std::istringstream iss(input);
   int bank;
+  banks.clear();
   while (iss >> bank) {
     banks.push_back(bank);
   }
-  return banks;
 }
 
 int MemoryReallocation::detectInfiniteLoop(const std::string& input) {
-  std::vector<int> banks        = load(input);
-  std::string new_configuration = redistribute(banks);
-  int runs                      = 1;
+  load(input);
+  int runs                      = 0;
+  std::string new_configuration = redistribute(runs++);
   while (not hasAlreadySeen(new_configuration)) {
-    new_configuration = redistribute(banks);
-    runs++;
+    new_configuration = redistribute(runs++);
   }
   return runs;
+}
+
+int MemoryReallocation::computeLoopSize(const std::string& input) {
+  int loop_cycle = detectInfiniteLoop(input);
+
+  return loop_cycle - dict[getStringRepresentation(banks)];
 }
