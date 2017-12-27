@@ -8,11 +8,11 @@ In addition, these instructions are a little strange; after each jump, the offse
 
 For example, consider the following list of jump offsets:
 
-0
-3
-0
-1
--3
+    0
+    3
+    0
+    1
+    -3
 
 Positive jumps ("forward") move downward; negative jumps move upward. For legibility in this example, these offset values will be written all on one line, with the current instruction marked in parentheses. The following steps would be taken before an exit is found:
 
@@ -30,4 +30,10 @@ How many steps does it take to reach the exit?
 
 
 ## Part Two
+
+Now, the jumps are even stranger: after each jump, if the offset was three or more, instead decrease it by ```1```. Otherwise, increase it by 1 as before.
+
+Using this rule with the above example, the process now takes 10 steps, and the offset values after finding the exit are left as ```2 3 2 3 -1```.
+
+How many steps does it now take to reach the exit?
 
