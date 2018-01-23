@@ -45,6 +45,5 @@ Your goal is to find the total score for all groups in your input. Each group is
 What is the total score for all groups in your input?
 
 
-
 ## Part Two
 
